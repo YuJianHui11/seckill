@@ -1,0 +1,11 @@
+seckill-system/
+├── api/            # API接口定义
+├── cmd/            # 主程序入口
+├── config/         # 配置文件
+├── internal/       # 内部包
+│   ├── handler/    # HTTP处理器
+│   ├── model/      # 数据模型
+│   ├── repository/ # 数据访问层
+│   └── service/    # 业务逻辑层
+├── pkg/            # 公共包
+└── web/           # 前端代码 

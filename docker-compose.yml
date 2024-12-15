@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_PASSWORD=secret
+      - REDIS_PASSWORD=secret
+      - JWT_SECRET=secret
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=seckill
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis:6.2
+    command: redis-server --requirepass secret
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3.9-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  mysql-data: 
